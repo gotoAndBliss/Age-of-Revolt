@@ -1,0 +1,36 @@
+= form_for :order, :url => populate_orders_url do |f|
+  = hook :inside_product_cart_form do
+    - if product_price(@product)
+      = hook :product_price do
+        %p.prices.product-price
+          = t("price")
+          %span.price.selling.stuff= product_price(@product)
+    - if @product.has_variants?
+      #product-variants
+        %ul
+          - has_checked = false
+          - @product.variants.active.each_with_index do |v,index|
+          - next if v.option_values.empty? || (!v.in_stock && !Spree::Config[:show_zero_stock_products])
+          - checked = !has_checked && (v.in_stock || Spree::Config[:allow_backorders])
+          - has_checked = true if checked
+            %li
+              %label
+                %span.variant-description
+                  = variant_options v
+                = radio_button_tag "products[#{@product.id}]", v.id, checked, :disabled => !v.in_stock && !Spree::Config[:allow_backorders]
+                - if variant_price_diff v
+                  %span.price.diff= variant_price_diff v
+    - if @product.has_stock? || Spree::Config[:allow_backorders]
+      %span{:style => "font-size: 16px; font-weight: bold;"}
+        qty.
+      = text_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"), |
+        1, :class => "title", :style => "margin-bottom: 10px; width: 20px;", :size => 3                                                         |
+      \&nbsp;
+      %br/
+      %br/
+      %button.large.primary{:type => "submit", :class => "add-to-cart"}
+        add to cart
+    - else
+      = content_tag('strong', t('out_of_stock'))
+- content_for :head do
+  = javascript_include_tag 'product'

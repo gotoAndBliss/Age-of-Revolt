@@ -1,0 +1,5 @@
+%div{:style => "clear: both;"}
+  .taxon
+    %h3.subtax_bg
+      = link_to taxon.name, seo_url(taxon), :class => 'breadcrumbs'
+    = render :partial => "shared/products", :locals => {:products => taxon_preview(taxon), :taxon => taxon}

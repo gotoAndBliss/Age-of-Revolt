@@ -1,0 +1,32 @@
+= render :partial => 'shared/doc_and_xmlns'
+%head
+  = hook :inside_head do
+    = render :partial => 'shared/head'
+  %link{:rel => "shortcut icon", :href => "/images/favicon.png"}
+  %link{:href => 'http://fonts.googleapis.com/css?family=Rock+Salt', :rel => 'stylesheet', :type => 'text/css'}
+  = javascript_include_tag :ckeditor
+- if @body_class.nil?
+  - if content_for?(:sidebar)
+    - @body_class = 'two-col'
+  - else
+    - @body_class = 'one-col'
+
+%body{:class => @body_class, :id => @body_id}
+  #header.container_bg
+    .container
+      #login-bar
+        %ul#nav-bar
+          = render 'shared/nav_bar'
+      = link_to image_tag('../images/logo.png'), root_url
+  #wrapper.container
+    - if content_for?(:sidebar)
+      #sidebar
+        = hook :sidebar do
+          = yield :sidebar
+    #content
+      - if flash.notice
+        .flash.notice= flash.notice
+      - if flash[:error]
+        .flash.errors= flash[:error]
+      = yield
+  = render :partial => 'shared/footer'

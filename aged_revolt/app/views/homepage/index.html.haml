@@ -1,0 +1,41 @@
+#homepage
+  = image_tag ('home-pic.png')
+  %div{:style => "width: 752px; padding-left: 39px;"}
+    %hr.space
+    #homepage-innards
+      %h3
+        We are Age of Revolt
+      %br/
+      We are the clothes you wear,
+      %br/
+      The books you read,
+      %br/
+      And the passion you have
+      %br/
+      for autonomy.
+      %br/
+      We are the will to overthrow the state.
+      %br/
+      We are Robert Paulson’s name.
+      %br/
+      We are the medula oblimgada
+      %br/
+      that cries to the moonlit revolution.
+      %br/
+      We are the shadows,
+      %br/
+      And the enemy.
+      %br/
+      We are you.
+      %br/
+    %hr.space
+    %hr.space
+    .repeating-stars
+.bottom-leaf{:style => "clear:both;margin-left: 10px;"}
+
+- content_for :sidebar do
+  = hook :homepage_sidebar_navigation do
+    - if "products" == @current_controller && @taxon
+      = render "shared/filters"
+    - else
+      = render "shared/taxonomies"

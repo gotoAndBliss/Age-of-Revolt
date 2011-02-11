@@ -1,0 +1,44 @@
+!!!
+%html{:xmlns => "http://www.w3.org/1999/xhtml"}
+  %head
+    %link{:rel => "shortcut icon", :href => "/images/favicon.png"}
+    = hook :admin_inside_head do
+      = render :partial => "shared/admin_head"
+  %body.yui-skin-sam.admin
+    /[if IE 7]
+      <div id='IE7'>
+    #wrapper
+      #header
+        = hook :admin_login_navigation_bar
+        %a{:href => admin_path}= image_tag '../images/logo.png', :id => 'logo'
+        %h1= link_to t("administration"), admin_path, :style => "margin-left: 250px; color: white;"
+        #progress
+          = image_tag 'progress.gif'
+          = t('loading')
+          \...
+      #admin-menu
+        %ul
+          = hook :admin_tabs do
+            = render 'admin/shared/tabs'
+        %br.clear/
+      #sub-menu
+        = yield :sub_menu
+        %br.clear/
+      #content{:class => "#{'with-sidebar ' if content_for?(:sidebar)} clear tile_bg"}
+        - if flash[:error]
+          .flash.error= flash[:error]
+        - if self.notice
+          .flash.notice= self.notice
+        = yield
+        - if content_for?(:sidebar)
+          %br.clear/
+          #sidebar
+            = yield :sidebar
+      #footer
+        %p
+          = t("icons_by")
+          %a{:href => "http://pinvoke.com"} pInvoke
+    /[if IE]
+      </div>
+    = hook :admin_footer_scripts do
+      = javascript_include_tag 'admin/unobtrusive_handlers'

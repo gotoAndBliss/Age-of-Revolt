@@ -1,0 +1,12 @@
+#homepage
+  = raw Wysiwyg.find_by_name("faq").content
+  %hr.space
+  %hr.space
+  .repeating-stars
+.bottom-leaf{:style => "clear:both;margin-left: 10px;"}
+- content_for :sidebar do
+  = hook :homepage_sidebar_navigation do
+    - if "products" == @current_controller && @taxon
+      = render "shared/filters"
+    - else
+      = render "shared/taxonomies"

@@ -1,0 +1,14 @@
+- paginated_products = @searcher.products if params.key?(:keywords)
+- paginated_products ||= products
+- if products.empty?
+  = t(:no_products_found)
+- elsif params.key?(:keywords)
+  %h2{:style => "font-family: 'Rock Salt'; margin: 10px 0 0 20px;"}= t(:search_results, :keywords => h(params[:keywords]))
+- if products.any?
+  %ul.product-listing
+    - products.each do |product|
+      - if Spree::Config[:show_zero_stock_products] || product.has_stock?
+        %li{:id => "product_#{product.id}"}
+          = hook :products_list_item, {:product => product} do
+            = link_to small_image(product), product
+            = link_to raw(product.name + " <span class='price selling'>#{product_price(product)}</span>"), product, :class => 'info'

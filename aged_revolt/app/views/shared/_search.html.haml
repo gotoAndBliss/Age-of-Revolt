@@ -1,0 +1,3 @@
+= form_tag products_url, :method => :get do
+  = text_field_tag :keywords, params[:keywords] ? params[:keywords] : "revolution looks like..", :class => 'searchbar'
+  = submit_tag t(:search), :name => nil, :class => 'search-btn'

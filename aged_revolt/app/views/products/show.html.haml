@@ -1,0 +1,37 @@
+-##sidebar
+  = render :partial => "shared/taxonomies"
+#product-bg
+  - @body_id = 'product-details'
+  #product-images
+    = hook :product_images do
+      #main-image
+        = render 'image'
+      #thumbnails
+        = render 'thumbnails', :product => @product
+    %button.shipping
+      shipping
+    %button.sizes-chart
+      sizes chart
+  #product-description
+    %h1= @product.name
+    = hook :product_description do
+      = product_description(@product) rescue t("product_has_no_description")
+    = hook :product_properties do
+      = render 'properties'
+  = hook :cart_form do
+    #cart-form
+      = render 'cart_form'
+
+  %div{:style => "width: 780px; margin-left: 90px;"}
+    %hr.space
+    %hr.space
+    .repeating-stars
+  
+.bottom-leaf
+
+- content_for :sidebar do
+  = hook :homepage_sidebar_navigation do
+    - if "products" == @current_controller && @taxon
+      = render "shared/filters"
+    - else
+      = render "shared/taxonomies"

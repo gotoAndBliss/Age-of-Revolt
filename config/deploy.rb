@@ -15,7 +15,7 @@ role :web, domain
 role :db, domain, :primary => true
 
 set :scm, :git
-set :scm_username 'gotoAndBliss'
+set :scm_username, 'gotoAndBliss'
 set :repository,  "git@github.com:gotoAndBliss/Age-of-Revolt.git"
 set :branch, "master"
 

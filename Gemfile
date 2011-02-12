@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
-gem 'spree', :git => 'http://github.com/railsdog/spree.git' 
+gem 'spree', "0.11.1", :git => 'http://github.com/railsdog/spree.git' 
 gem 'haml'
 gem 'ruby-debug'
 gem 'sqlite3-ruby', :require => 'sqlite3'

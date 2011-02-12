@@ -7,7 +7,7 @@ set :user, "shadyfront"
 set :use_sudo, false
 
 ssh_options[:paranoid] = false
-ssh_options[:keys] = %w(~/.ssh/)
+ssh_options[:keys] = %w("~/.ssh/")
 set :domain, "174.133.20.24" #"IP or domain name of production server"
 
 role :app, domain
@@ -38,11 +38,11 @@ namespace :deploy do
 
   desc "Tell Nginx to restart the app."
   task :restart do
-    run "/home/shadyfront/webapps/age_of_revolt/bin/restart"
+    #run "/home/shadyfront/webapps/age_of_revolt/bin/restart"
   end
   desc "Bundle Install That Bitch"
   task :bundle_install do
-    run "#{release_path}/bundle install"
+    #run "#{release_path}/bundle install"
   end
 
   deploy.task :start do

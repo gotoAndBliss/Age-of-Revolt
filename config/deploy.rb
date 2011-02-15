@@ -1,3 +1,5 @@
+require 'bundler/capistrano'
+
 set :application, "revolting_age" # this will be used to create the folder structure (see line)
 set :deploy_to, "/home/shadyfront/webapps/#{application}"
 

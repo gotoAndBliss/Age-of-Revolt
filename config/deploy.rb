@@ -1,7 +1,7 @@
-set :application, "age_of_revolt" # this will be used to create the folder structure (see line)
+set :application, "revolting_age" # this will be used to create the folder structure (see line)
 set :deploy_to, "/home/shadyfront/webapps/#{application}"
 
-set :rails_env, "production"
+set :rails_env, "development"
 
 set :user, "shadyfront"
 set :use_sudo, false

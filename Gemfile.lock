@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/spree/spree.git
-  revision: 44e4771f3a2aa3b62169d9476f0842f438d6f7df
+  revision: 1706124f2f94115bc422ce44bfb5f833a9dd3754
   specs:
     spree (0.50.99)
       spree_api (= 0.50.99)
@@ -173,6 +173,6 @@ DEPENDENCIES
   honeypot-captcha
   rails (= 3.0.3)
   ruby-debug
-  spree (= 0.50.99)!
+  spree!
   spree_easy_contact (= 1.0.2)!
   sqlite3

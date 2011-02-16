@@ -1,65 +1,59 @@
-require 'bundler/capistrano'
+# Warning to my picky self: order of requires matters because they define new tasks and
+# affect order of task operation.
 
-set :application, "revolting_age" # this will be used to create the folder structure (see line)
-set :deploy_to, "/home/shadyfront/webapps/#{application}"
-
-set :rails_env, "development"
-
-set :user, "shadyfront"
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+require "rvm/capistrano"
+set :rvm_ruby_string, "ruby-1.8.7@revolting_gems"
+set :rvm_type, :user
 set :use_sudo, false
 
-ssh_options[:paranoid] = false
-ssh_options[:keys] = %w("~/.ssh/")
-set :domain, "174.133.20.24" #"IP or domain name of production server"
+set :stages, %w(testing staging production)
+set :default_stage, 'testing'
+require 'capistrano/ext/multistage'
 
-role :app, domain
-role :web, domain
-role :db, domain, :primary => true
+default_run_options[:pty]   = true # must be set for the password prompt from git to work
+ssh_options[:forward_agent] = true # use local keys instead of the ones on the server
+
+set :application, "revolting_age"
+set :repository,  "git@github.com:gotoAndBliss/Age-of-Revolt.git"
 
 set :scm, :git
-set :scm_username, 'gotoAndBliss'
-set :repository,  "git@github.com:gotoAndBliss/Age-of-Revolt.git"
+set :scm_username, user
+set :user, "gotoAndBliss"
 set :branch, "master"
+set :deploy_via, :checkout
 
-set :deploy_via, :remote_cache
+role :web, "174.133.20.24"
+role :app, "174.133.20.24"
+role :db,  "174.133.20.24", :primary => true
 
-set :scm_command, "git"
+after "deploy:update_code", "deploy:update_shared_symlinks"
+require "bundler/capistrano"
+after "bundle:install", "deploy:migrate"
 
 namespace :deploy do
-
-  desc "Sync the config directory"
-  task :sync_config do
-
-    system "rsync -vr --exclude='*~' config #{user}@#{domain}:#{release_path}/"
-
-    system "rsync -vr --exclude='*~' tmp #{user}@#{domain}:#{shared_path}/"
-
-    system "rsync -vr --exclude='*~' db #{user}@#{domain}:#{release_path}/"
-
+  task :start do ; end
+  task :stop  do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "touch #{File.join(current_path, "tmp/restart.txt")}"
   end
 
-  desc "Tell Nginx to restart the app."
-  task :restart do
-    #run "/home/shadyfront/webapps/age_of_revolt/bin/restart"
-  end
-
-  deploy.task :start do
-     # nothing
-   end
-end
-
-namespace :bundler do
-  task :create_symlink, :roles => :app do
-    shared_dir = File.join(shared_path, 'bundle')
-    release_dir = File.join(current_release, '.bundle')
-    run("mkdir -p #{shared_dir} && ln -s #{shared_dir} #{release_dir}")
-  end
- 
-  task :bundle_new_release, :roles => :app do
-    bundler.create_symlink
-    run "cd #{release_path} && bundle install --without test"
+  task :update_shared_symlinks do
+    %w(config/database.yml).each do |path|
+      run "rm -rf #{File.join(release_path, path)}"
+      run "ln -s #{File.join(deploy_to, "shared", path)} #{File.join(release_path, path)}"
+    end
   end
 end
 
-# after 'deploy:update_code', 'deploy:restart', 'deploy:sync_config'
-# after 'bundler:create_symlink', 'bundler:bundle_new_release'
+# config/deploy/testing.rb
+  set :deploy_to, "/home/shadyfront/webapps/revolting_age/testing/age_of_revolt/"
+  set :rails_env, :development
+
+# config/deploy/staging.rb
+  set :deploy_to, "/home/shadyfront/webapps/revolting_age/development/age_of_revolt/"
+  set :rails_env, :production
+
+# config/deploy/production.rb
+  set :deploy_to, "/home/shadyfront/webapps/revolting_age/production/age_of_revolt/"
+  set :rails_env, :production

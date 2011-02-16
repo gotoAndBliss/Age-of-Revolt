@@ -173,6 +173,7 @@ DEPENDENCIES
   honeypot-captcha
   rails (= 3.0.3)
   ruby-debug
-  spree!
+  spree
+  spree_core!
   spree_easy_contact (= 1.0.2)!
   sqlite3

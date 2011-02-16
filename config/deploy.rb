@@ -42,14 +42,24 @@ namespace :deploy do
   task :restart do
     #run "/home/shadyfront/webapps/age_of_revolt/bin/restart"
   end
-  desc "Bundle Install That Bitch"
-  task :bundle_install do
-    #run "#{release_path}/bundle install"
-  end
 
   deploy.task :start do
      # nothing
    end
 end
 
-after 'deploy:update_code', 'deploy:sync_config', 'deploy:restart'
+namespace :bundler do
+  task :create_symlink, :roles => :app do
+    shared_dir = File.join(shared_path, 'bundle')
+    release_dir = File.join(current_release, '.bundle')
+    run("mkdir -p #{shared_dir} && ln -s #{shared_dir} #{release_dir}")
+  end
+ 
+  task :bundle_new_release, :roles => :app do
+    bundler.create_symlink
+    run "cd #{release_path} && bundle install --without test"
+  end
+end
+
+# after 'deploy:update_code', 'deploy:restart', 'deploy:sync_config'
+# after 'bundler:create_symlink', 'bundler:bundle_new_release'

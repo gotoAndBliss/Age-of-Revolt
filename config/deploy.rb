@@ -3,8 +3,9 @@
 
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require "rvm/capistrano"
-set :rvm_ruby_string, "ruby-1.8.7@revolting_gems"
+set :rvm_ruby_string, "1.8.7@revolting_gems"
 set :rvm_type, :user
+set :user, "shadyfront"
 set :use_sudo, false
 
 set :stages, %w(testing staging production)
@@ -15,17 +16,23 @@ default_run_options[:pty]   = true # must be set for the password prompt from gi
 ssh_options[:forward_agent] = true # use local keys instead of the ones on the server
 
 set :application, "revolting_age"
-set :repository,  "git@github.com:gotoAndBliss/Age-of-Revolt.git"
+
+ssh_options[:paranoid] = false
+ssh_options[:keys] = %w("~/.ssh/")
+set :domain, "174.133.20.24"
+
+role :web, domain
+role :app, domain
+role :db,  domain, :primary => true
 
 set :scm, :git
-set :scm_username, user
-set :user, "gotoAndBliss"
+set :scm_username, 'gotoAndBliss'
+set :repository,  "git@github.com:gotoAndBliss/Age-of-Revolt.git"
 set :branch, "master"
-set :deploy_via, :checkout
 
-role :web, "174.133.20.24"
-role :app, "174.133.20.24"
-role :db,  "174.133.20.24", :primary => true
+set :deploy_via, :remote_cache
+
+set :scm_command, "git"
 
 after "deploy:update_code", "deploy:update_shared_symlinks"
 require "bundler/capistrano"

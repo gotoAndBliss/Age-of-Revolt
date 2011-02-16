@@ -15,11 +15,11 @@
     default_run_options[:pty]   = true # must be set for the password prompt from git to work
     ssh_options[:forward_agent] = true # use local keys instead of the ones on the server
 
-    set :application, "revolting_age"
+    set :application, "age_of_revolt"
 
     ssh_options[:paranoid] = false
     ssh_options[:keys] = %w("~/.ssh/")
-    set :domain, "174.133.20.24"
+    set :domain, "75.125.121.238"
 
     role :web, domain
     role :app, domain
@@ -36,8 +36,8 @@
     set :local_scm_command, "/usr/local/bin/git"
 
     after "deploy:update_code", "deploy:update_shared_symlinks"
-    require "bundler/capistrano"
-    after "bundle:install", "deploy:migrate"
+    #require "bundler/capistrano"
+    #after "bundle:install", "deploy:migrate"
 
     namespace :deploy do
       task :start do ; end

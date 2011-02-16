@@ -32,7 +32,7 @@ set :branch, "master"
 
 set :deploy_via, :remote_cache
 
-set :scm_command, "git"
+set :scm_command, "~/bin/git"
 
 after "deploy:update_code", "deploy:update_shared_symlinks"
 require "bundler/capistrano"

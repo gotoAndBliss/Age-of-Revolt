@@ -36,8 +36,8 @@
     set :local_scm_command, "/usr/local/bin/git"
 
     after "deploy:update_code", "deploy:update_shared_symlinks"
-    require "bundler/capistrano"
-    after "bundle:install", "deploy:migrate"
+    #require "bundler/capistrano"
+    #after "bundle:install", "deploy:migrate"
 
     namespace :deploy do
       task :start do ; end

@@ -715,18 +715,21 @@ button.add-to-cart{
 }
 a.button.shipping {
   background: url('/images/shipping-btn.png') no-repeat;
-  width: 171px;
+  width: 145px;
   height: 41px;  
   margin-bottom: 10px;
+  text-align: center;
 }
 a.button.shipping:hover{
   background: url('/images/shipping-btn-hover.png') no-repeat !important;
 }
 a.button.sizes-chart{
   background: url('/images/size-chart-btn.png') no-repeat;
-  width: 171px;
+  width: 145px;
   height: 48px;
+  text-align: center;
 }
+
 a.button.sizes-chart:hover{
   background: url('/images/sizes-chart-btn-hover.png') no-repeat !important;
 }

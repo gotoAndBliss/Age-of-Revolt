@@ -713,21 +713,21 @@ button.add-to-cart{
   width: 171px;
   height: 48px;
 }
-button.shipping {
+a.button.shipping {
   background: url('/images/shipping-btn.png') no-repeat;
   width: 171px;
   height: 41px;  
   margin-bottom: 10px;
 }
-button.shipping:hover{
+a.button.shipping:hover{
   background: url('/images/shipping-btn-hover.png') no-repeat !important;
 }
-button.sizes-chart{
+a.button.sizes-chart{
   background: url('/images/size-chart-btn.png') no-repeat;
   width: 171px;
   height: 48px;
 }
-button.sizes-chart:hover{
+a.button.sizes-chart:hover{
   background: url('/images/sizes-chart-btn-hover.png') no-repeat !important;
 }
 button.primary, a.button.primary, input.button.primary {

@@ -8,9 +8,9 @@
         = render 'image'
       #thumbnails
         = render 'thumbnails', :product => @product
-    %button.shipping
+    %a.button.shipping{:href => "/shipping"}
       shipping
-    %button.sizes-chart
+    %a.button.sizes-chart{:href => "/size_charts"}
       sizes chart
   #product-description
     %h1= @product.name

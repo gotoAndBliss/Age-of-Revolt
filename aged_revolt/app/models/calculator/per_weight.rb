@@ -18,8 +18,9 @@ class Calculator::PerWeight < Calculator
 
   def compute(object=nil)
     sum = 0
-    @pounds = object.line_items.inject(0){|love, idx| love + idx.variant.weight }
-    @pounds.to_i.times do |i|
+
+    @pounds = object.line_items.inject(0){|love, idx| love + idx.variant.weight.to_i }
+    @pounds.times do |i|
 
       if i < 1
 
@@ -28,6 +29,7 @@ class Calculator::PerWeight < Calculator
         sum += self.preferred_additional_pound
       end
     end
+    debugger
     return(sum)
   end
   

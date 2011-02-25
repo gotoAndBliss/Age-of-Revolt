@@ -29,7 +29,7 @@ class Calculator::PerWeight < Calculator
         sum += self.preferred_additional_pound
       end
     end
-    debugger
+
     return(sum)
   end
   

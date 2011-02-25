@@ -1,0 +1,12 @@
+body.two-col #content {
+    margin-top: 120px;
+}
+body.one-col #content {
+  margin-top: 120px;
+}
+#sidebar {
+  margin-top: 11px;
+}
+#search-btn{
+  top: 2px;
+}

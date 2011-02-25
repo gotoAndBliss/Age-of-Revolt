@@ -1,0 +1,9 @@
+.searchbar {
+  height: 23px;
+  font-size: 22px;
+}
+.search-btn {
+  height:30px;
+  font-size: 18px;
+  top: -2px;
+}

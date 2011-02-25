@@ -1302,6 +1302,8 @@ div#checkout #checkout-summary {
   background: url("/images/innards.png") repeat-y scroll 0 0 transparent;
   padding: 10px 0 20px 35px;
   width: 686px;
+  font-family: 'Rock Salt';
+  font-size: 16px;
 }
 .subtax_bg {
   background: url("/images/subtaxon_bg.png") no-repeat scroll 0 0 transparent;

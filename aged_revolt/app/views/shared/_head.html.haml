@@ -1,0 +1,12 @@
+%title= title
+%meta{:content => "text/html;charset=utf-8", "http-equiv" => "Content-Type"}/
+= raw stylesheet_tags
+/[if lte IE 8]
+  = stylesheet_link_tag 'is-a-stupid-user.css'
+/[if IE]
+  = stylesheet_link_tag 'is-ie.css'
+= javascript_include_tag 'jquery-1.4.2.min.js', 'jquery.validate.min.js', :cache => 'jquery-core'
+- unless I18n.locale.to_s[0..1] == 'en'
+  = javascript_include_tag ['localization/messages_', I18n.locale.to_s[0..1], '.js'].join
+= raw meta_data_tags
+= yield :head

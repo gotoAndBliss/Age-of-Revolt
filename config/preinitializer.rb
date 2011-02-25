@@ -1,1 +1,1 @@
-SPREE_EXTENSIONS_LOAD_ORDER = [:aged_revolt, :localization, :theme_default, :calculators]
+SPREE_EXTENSIONS_LOAD_ORDER = [:aged_revolt, :localization, :theme_default]

@@ -730,6 +730,7 @@ a.button.sizes-chart{
   text-align: center;
 }
 
+
 a.button.sizes-chart:hover{
   background: url('/images/sizes-chart-btn-hover.png') no-repeat !important;
 }

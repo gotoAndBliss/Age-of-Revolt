@@ -1288,6 +1288,9 @@ div#checkout #checkout-summary {
   margin-top: 10px;
   padding: 20px;
   width: 180px;
+  color: white;
+  text-decoration: none;
+  font-family: 'Rock Salt';
 }
 
 #homepage {

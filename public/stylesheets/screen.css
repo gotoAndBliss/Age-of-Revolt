@@ -518,6 +518,7 @@ ul#nav-bar li.cart-indicator a.full { }
   background: #e5e6ca;
   padding-left: 5px;
   margin-top: 10px;
+  font-family: 'Rock Salt';
 }
 .search-btn{
   height: 42px;
@@ -683,11 +684,15 @@ ul#nav-bar li.cart-indicator a.full { }
   margin-right: 25px;
   border-right: 1px solid #eeeeee;
 }
+.button.continue {
+  padding-left: 40px;
+  width: 170px;
+}
 button, a.button, input.button {
   background: url('/images/add-to-cart-2.png') no-repeat;
   color: white;
   display: inline-block;
-  font-family: Arial, Helvetica Neue, Helvetica, Sans-serif;
+  font-family: 'Rock Salt';
   font-size: 16px !important;
   font-weight: bold;
   font-size-adjust: none;
@@ -705,7 +710,14 @@ button, a.button, input.button {
   height: auto;
   cursor: pointer;
   border: 0;
-  
+  padding-top: 5px;  
+}
+#line_items h4 a {
+  color: black;
+  font-family: 'Rock Salt';
+  font-size: 20px;
+  outline: medium none;
+  text-decoration: none;
 }
 button.add-to-cart{
   background: url('/images/add-to-cart-2.png') no-repeat;
@@ -718,6 +730,7 @@ a.button.shipping {
   height: 41px;  
   margin-bottom: 10px;
   text-align: center;
+  font-family: 'Rock Salt';
 }
 a.button.shipping:hover{
   background: url('/images/shipping-btn-hover.png') no-repeat !important;
@@ -727,6 +740,7 @@ a.button.sizes-chart{
   width: 145px;
   height: 48px;
   text-align: center;
+  font-family: 'Rock Salt';
 }
 
 a.button.sizes-chart:hover{
@@ -736,6 +750,8 @@ button.primary, a.button.primary, input.button.primary {
   font-weight: bold;
   color: white;
   border: 0;
+  font-family: 'Rock Salt';
+  padding-top: 4px;
 }
 button:hover { background-image: url(/images/add-to-cart-hover.png) !important; }
 a.button:hover { background-image: url(/images/add-to-cart-hover.png) !important; }
@@ -1188,10 +1204,12 @@ ol.progress-steps li span {
   float: left;
   background-position: top right;
   background-repeat: no-repeat;
+  font-family: 'Rock Salt';
 }
 ol.progress-steps li a {
   text-decoration: none;
   color: #333333;
+  font-family: 'Rock Salt';
 }
 ol.progress-steps li.current-first span { padding-left: 14px; }
 ol.progress-steps li.completed-first span { padding-left: 14px; }

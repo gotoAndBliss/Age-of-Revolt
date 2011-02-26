@@ -1,3 +1,3 @@
 = form_tag products_url, :method => :get do
-  = text_field_tag :keywords, params[:keywords] ? params[:keywords] : "revolution looks like..", :class => 'searchbar', :onfocus => "if (this.value == 'revolution looks like..') {this.value=''};"
+  = text_field_tag :keywords, params[:keywords] ? params[:keywords] : "revolution is..", :class => 'searchbar', :onfocus => "if (this.value == 'revolution is..') {this.value=''};"
   = submit_tag t(:search), :name => nil, :class => 'search-btn'

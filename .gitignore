@@ -5,3 +5,4 @@ db/schema.sql
 log/*.log
 tmp/**/*
 public/assets/*
+public/stylesheets/all.css

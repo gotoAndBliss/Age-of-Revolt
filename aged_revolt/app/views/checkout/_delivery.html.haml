@@ -1,0 +1,26 @@
+%fieldset#shipping_method
+  %legend= t("shipping_method")
+  .inner
+    #methods
+      %p.field.radios
+        - if @order.total.to_f < 76
+          - @order.rate_hash.reject{|obj|obj[:cost] == 0}.each do |shipping_method|
+            %label
+              = radio_button(:order, :shipping_method_id, shipping_method[:id])
+              = shipping_method[:name]
+              = number_to_currency shipping_method[:cost]
+            %br/
+        - elsif @order.total.to_f > 74
+          - @order.rate_hash.select{|obj|obj[:cost] == 0}.each do |shipping_method|
+            %label
+              = radio_button(:order, :shipping_method_id, shipping_method[:id])
+              = shipping_method[:name]
+              = number_to_currency shipping_method[:cost]
+            %br/
+    - if Spree::Config[:shipping_instructions] && @order.rate_hash.present?
+      %p#minstrs
+        = form.label :special_instructions, t("shipping_instructions")
+        %br/
+        = form.text_area :special_instructions, :cols => 40, :rows => 7
+.form-buttons
+  %input.continue.button.primary{:type => "submit", :value => t("save_and_continue")}/

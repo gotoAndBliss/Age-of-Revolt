@@ -350,11 +350,13 @@ body.two-col #content {
   text-decoration: none;
   margin-left: 20px;
   font-size: 14px;
+  font-family: 'Rock Salt';
 }
 #footer p {
   color: white;
   font-weight: bold;
   font-size: 12px;
+  margin-top: 7px;
 }
 h1 { font-size: 31px; color: #4c1307; font-weight: bold; }
 .form-buttons, .clear { clear: both; }
@@ -501,6 +503,9 @@ ul#nav-bar li {
 ul#nav-bar li a {
   color: white;
   text-decoration: none;
+  font-family: 'Rock Salt';
+  font-size: 11px;
+  margin-right: 5px;
 }
 ul#nav-bar li.cart-indicator a {
   padding-right: 40px;
@@ -685,8 +690,9 @@ ul#nav-bar li.cart-indicator a.full { }
   border-right: 1px solid #eeeeee;
 }
 .button.continue {
-  padding-left: 40px;
+  padding-left: 20px;
   width: 170px;
+  font-size: 11px !important;
 }
 button, a.button, input.button {
   background: url('/images/add-to-cart-2.png') no-repeat;
@@ -950,7 +956,7 @@ ul.thumbnails li.selected { border-color: #999999; }
 #product-images {
   display: inline;
   float: left;
-  width: 270px;
+  width: 382px;
   margin: 0 10px 0 35px;
 }
 #product-images h4 {
@@ -960,7 +966,7 @@ ul.thumbnails li.selected { border-color: #999999; }
   clear: both;
 }
 #product-images #main-image {
-  min-height: 250px;
+  min-height: 380px;
   position: relative;
 }
 #product-images #main-image img {
@@ -974,15 +980,14 @@ ul.thumbnails li.selected { border-color: #999999; }
 #product-description {
   display: inline;
   float: left;
-  width: 380px;
-  padding-right: 24px;
+  width: 285px;
   margin: 35px 25px 15px 0;
   border-bottom: 2px solid #524118;
 }
 #cart-form {
   display: inline;
   float: left;
-  width: 380px;
+  width: 285px;
   text-align: right;
   margin-bottom: 15px;
 }

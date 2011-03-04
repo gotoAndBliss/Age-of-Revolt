@@ -6,3 +6,5 @@ log/*.log
 tmp/**/*
 public/assets/*
 public/stylesheets/all.css
+aged_revolt/app/controllers/taxons_controller.rb
+public/assets/products/*

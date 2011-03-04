@@ -6,12 +6,13 @@
     = hook :product_images do
       #main-image
         = render 'image'
+      .clear
       #thumbnails
         = render 'thumbnails', :product => @product
-    %a.button.shipping{:href => "/shipping"}
-      shipping
-    %a.button.sizes-chart{:href => "/size_charts"}
-      sizes chart
+      %a.button.shipping{:href => "/shipping"}
+        shipping
+      %a.button.sizes-chart{:href => "/size_charts"}
+        sizes chart
   #product-description
     %h1= @product.name
     = hook :product_description do
